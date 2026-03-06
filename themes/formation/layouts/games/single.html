@@ -1,0 +1,110 @@
+{{ define "main" }}
+<article class="max-w-4xl mx-auto px-6 py-16">
+  <!-- Breadcrumb -->
+  <nav class="text-sm text-stone-500 mb-8">
+    <a href="/" class="hover:text-amber-800">Home</a>
+    <span class="mx-2">/</span>
+    <a href="/games/" class="hover:text-amber-800">Games</a>
+    <span class="mx-2">/</span>
+    <span class="text-stone-700">{{ .Title }}</span>
+  </nav>
+
+  <div class="grid lg:grid-cols-3 gap-12">
+    <!-- Main Content -->
+    <div class="lg:col-span-2">
+      <h1 class="text-3xl font-bold text-stone-900 mb-4">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="text-lg text-stone-600 mb-8">{{ . }}</p>
+      {{ end }}
+
+      {{ with .Params.formation_goal }}
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-5 mb-6">
+        <h3 class="text-sm font-semibold text-amber-800 uppercase tracking-wide mb-2">Formation Goal</h3>
+        <p class="text-stone-700">{{ . }}</p>
+      </div>
+      {{ end }}
+
+      {{ with .Params.learning_goal }}
+      <div class="bg-stone-100 border border-stone-200 rounded-lg p-5 mb-8">
+        <h3 class="text-sm font-semibold text-stone-600 uppercase tracking-wide mb-2">Learning Goal</h3>
+        <p class="text-stone-700">{{ . }}</p>
+      </div>
+      {{ end }}
+
+      <div class="prose prose-stone max-w-none">
+        {{ .Content }}
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="lg:col-span-1">
+      <!-- Game Details -->
+      <div class="bg-white border border-stone-200 rounded-lg p-6 mb-6 sticky top-6">
+        <h3 class="font-semibold text-stone-900 mb-4">Game Details</h3>
+        <dl class="space-y-3 text-sm">
+          {{ with .Params.age_range }}
+          <div class="flex justify-between">
+            <dt class="text-stone-500">Age Range</dt>
+            <dd class="text-stone-900 font-medium">{{ . }}</dd>
+          </div>
+          {{ end }}
+          {{ with .Params.players }}
+          <div class="flex justify-between">
+            <dt class="text-stone-500">Players</dt>
+            <dd class="text-stone-900 font-medium">{{ . }}</dd>
+          </div>
+          {{ end }}
+          {{ with .Params.play_time }}
+          <div class="flex justify-between">
+            <dt class="text-stone-500">Play Time</dt>
+            <dd class="text-stone-900 font-medium">{{ . }}</dd>
+          </div>
+          {{ end }}
+          {{ with .Params.difficulty }}
+          <div class="flex justify-between">
+            <dt class="text-stone-500">Difficulty</dt>
+            <dd class="text-stone-900 font-medium">{{ . }}</dd>
+          </div>
+          {{ end }}
+        </dl>
+
+        {{ with .Params.categories }}
+        <div class="mt-4 pt-4 border-t border-stone-100">
+          <dt class="text-sm text-stone-500 mb-2">Categories</dt>
+          <div class="flex flex-wrap gap-2">
+            {{ range . }}
+              <a href="{{ "/categories/" | relURL }}{{ . | urlize }}/" class="text-xs bg-stone-100 text-stone-600 rounded-full px-3 py-1 hover:bg-amber-100 hover:text-amber-800 transition-colors">{{ . }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        {{ with .Params.tags }}
+        <div class="mt-3">
+          <div class="flex flex-wrap gap-2">
+            {{ range . }}
+              <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="text-xs text-stone-400 hover:text-amber-800">#{{ . }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        <!-- Downloads -->
+        {{ with .Params.download_files }}
+        <div class="mt-6 pt-4 border-t border-stone-100">
+          <h4 class="font-semibold text-stone-900 mb-3">Downloads</h4>
+          <div class="space-y-2">
+            {{ range . }}
+            <a href="{{ . }}" class="download-link flex items-center gap-2 text-sm text-amber-800 hover:text-amber-900 font-medium py-2 px-3 bg-amber-50 rounded-md hover:bg-amber-100 transition-colors" download>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              {{ path.Base . }}
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </aside>
+  </div>
+</article>
+{{ end }}

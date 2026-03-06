@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  .score-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(20, 1fr);
+    gap: 0;
+    margin-top: 12px;
+  }
+  .score-grid .player-label {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 8px 4px;
+    border: 1px solid #d6d3d1;
+    background: #f5f5f4;
+    display: flex;
+    align-items: center;
+  }
+  .score-grid .score-cell {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid #d6d3d1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    color: #a8a29e;
+  }
+  .score-grid .score-cell.milestone {
+    background: #ecfdf5;
+    color: #047857;
+    font-weight: 600;
+  }
+  .score-grid .header-cell {
+    font-size: 7px;
+    font-weight: 600;
+    text-align: center;
+    padding: 2px;
+    border: 1px solid #d6d3d1;
+    background: #f5f5f4;
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-page">
+  <h1>The Narrow Way</h1>
+  <p class="subtitle">Score Track &mdash; Track each player's Virtue Points</p>
+
+  <p style="font-size: 9px; color: #57534e; margin-bottom: 8px;">Mark your current Virtue total after each round. Use a pencil so you can erase and update. Circle milestone numbers (5, 10, 15, 20) when you reach them.</p>
+
+  <div class="score-grid">
+    <div class="header-cell"></div>
+    <div class="header-cell">1</div><div class="header-cell">2</div><div class="header-cell">3</div><div class="header-cell">4</div>
+    <div class="header-cell milestone">5</div>
+    <div class="header-cell">6</div><div class="header-cell">7</div><div class="header-cell">8</div><div class="header-cell">9</div>
+    <div class="header-cell milestone">10</div>
+    <div class="header-cell">11</div><div class="header-cell">12</div><div class="header-cell">13</div><div class="header-cell">14</div>
+    <div class="header-cell milestone">15</div>
+    <div class="header-cell">16</div><div class="header-cell">17</div><div class="header-cell">18</div><div class="header-cell">19</div>
+    <div class="header-cell milestone">20</div>
+
+    <div class="player-label">Player 1: ___________</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">5</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">10</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">15</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">20</div>
+
+    <div class="player-label">Player 2: ___________</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">5</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">10</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">15</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">20</div>
+
+    <div class="player-label">Player 3: ___________</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">5</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">10</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">15</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">20</div>
+
+    <div class="player-label">Player 4: ___________</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">5</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">10</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">15</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">20</div>
+
+    <div class="player-label">Player 5: ___________</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">5</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">10</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">15</div>
+    <div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div><div class="score-cell"></div>
+    <div class="score-cell milestone">20</div>
+  </div>
+
+  <h2 style="margin-top: 20px;">Quick Reference</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 9px;">
+    <div>
+      <h3>On Your Turn</h3>
+      <ol>
+        <li>Draw a Situation Card</li>
+        <li>Choose: Broad Way (0 VP) or Narrow Way (draw Trial)</li>
+        <li>Resolve Trial: roll die vs threshold</li>
+        <li>Optional: draw one more Trial (push your luck)</li>
+        <li>Bank your Virtue Points</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Trial Results</h3>
+      <ul>
+        <li><strong>Automatic Pass:</strong> Gain VP immediately</li>
+        <li><strong>Threshold:</strong> Roll die &ge; number to pass</li>
+        <li><strong>Fall:</strong> Lose all unbanked VP this turn</li>
+        <li><strong>Lose VP:</strong> Subtract from your total</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="scripture" style="margin-top: 16px;">
+    "Because narrow is the gate and difficult is the way which leads to life, and there are few who find it." &mdash; Matthew 7:14
+  </div>
+
+  <p class="copyright">&copy; 2026 Coptic Cross Games. Free to print for personal and church use. Do not redistribute or sell.</p>
+</div>
+
+</body>
+</html>

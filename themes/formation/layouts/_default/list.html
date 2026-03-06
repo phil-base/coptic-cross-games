@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h1 class="text-3xl font-bold text-stone-900 mb-4">{{ .Title }}</h1>
+  {{ with .Content }}
+    <div class="prose prose-stone max-w-none mb-10">{{ . }}</div>
+  {{ end }}
+  {{ if eq .Section "games" }}
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-3 mb-8" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      {{ range .Site.Taxonomies.categories }}
+        <button class="filter-btn" data-filter="{{ .Page.Title | urlize }}">{{ .Page.Title }}</button>
+      {{ end }}
+    </div>
+  {{ end }}
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="game-grid">
+    {{ range .Pages }}
+      <div class="game-item" {{ with .Params.categories }}data-categories="{{ range . }}{{ . | urlize }} {{ end }}"{{ end }} {{ with .Params.difficulty }}data-difficulty="{{ . | urlize }}"{{ end }} {{ with .Params.age_range }}data-age="{{ . }}"{{ end }}>
+        {{ partial "game-card.html" . }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ if eq .Section "games" }}
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.game-item').forEach(item => {
+        if (filter === 'all' || (item.dataset.categories && item.dataset.categories.includes(filter))) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+{{ end }}
+{{ end }}

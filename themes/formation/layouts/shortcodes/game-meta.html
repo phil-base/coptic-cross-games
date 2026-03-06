@@ -1,0 +1,29 @@
+{{ $page := .Page }}
+<div class="bg-stone-100 rounded-lg p-5 mb-6 not-prose">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+    {{ with $page.Params.age_range }}
+    <div>
+      <span class="text-stone-500 block mb-1">Age Range</span>
+      <span class="font-semibold text-stone-900">{{ . }}</span>
+    </div>
+    {{ end }}
+    {{ with $page.Params.players }}
+    <div>
+      <span class="text-stone-500 block mb-1">Players</span>
+      <span class="font-semibold text-stone-900">{{ . }}</span>
+    </div>
+    {{ end }}
+    {{ with $page.Params.play_time }}
+    <div>
+      <span class="text-stone-500 block mb-1">Play Time</span>
+      <span class="font-semibold text-stone-900">{{ . }}</span>
+    </div>
+    {{ end }}
+    {{ with $page.Params.difficulty }}
+    <div>
+      <span class="text-stone-500 block mb-1">Difficulty</span>
+      <span class="font-semibold text-stone-900">{{ . }}</span>
+    </div>
+    {{ end }}
+  </div>
+</div>

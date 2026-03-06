@@ -1,0 +1,46 @@
+baseURL = "https://phil-base.github.io/coptic-cross-games/"
+languageCode = "en-us"
+title = "Coptic Cross Games"
+theme = "formation"
+
+[params]
+  tagline = "Formation Through Play"
+  description = "Print-and-play faith formation games for families, youth groups, churches, and Christian educators."
+  email_signup_url = ""
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    name = "Games"
+    url = "/games/"
+    weight = 1
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 2
+  [[menu.main]]
+    name = "Starter Pack"
+    url = "/starter-pack/"
+    weight = 3
+  [[menu.main]]
+    name = "Churches"
+    url = "/churches/"
+    weight = 4
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]

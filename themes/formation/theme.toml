@@ -1,0 +1,8 @@
+name = "Formation"
+license = "MIT"
+licenselink = ""
+description = "A calm, thoughtful theme for faith formation game distribution."
+min_version = "0.120.0"
+
+[author]
+  name = "Coptic Cross Games"

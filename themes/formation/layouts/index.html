@@ -1,0 +1,81 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="bg-gradient-to-b from-amber-50 to-stone-50 py-20">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6 font-serif">Formation Through Play</h1>
+    <p class="text-lg text-stone-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+      Print-and-play games rooted in Coptic Orthodox tradition. Designed for biblical learning, virtue formation, liturgical catechesis, and faith-filled discussion.
+      For families, Sunday school servants, youth groups, and churches.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/games/" class="btn-primary">Browse Games</a>
+      <a href="/starter-pack/" class="btn-secondary">Free Starter Pack</a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Games -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h2 class="text-2xl font-bold text-stone-900 mb-8">Featured Games</h2>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{ range where .Site.RegularPages "Section" "games" | first 6 }}
+      {{ partial "game-card.html" . }}
+    {{ end }}
+  </div>
+  <div class="text-center mt-10">
+    <a href="/games/" class="text-amber-800 font-medium hover:underline">View all games &rarr;</a>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="bg-white border-y border-stone-200 py-16">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-2xl font-bold text-stone-900 mb-10 text-center">Who Are These Games For?</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-700"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 class="font-semibold text-stone-900 mb-2">Families</h3>
+        <p class="text-sm text-stone-600">Meaningful game nights rooted in Scripture, saints, and the life of the Church.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-700"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="font-semibold text-stone-900 mb-2">Youth Groups</h3>
+        <p class="text-sm text-stone-600">Engaging activities that teach biblical principles through play and discussion.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-700"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="m9 16 3-8 3 8"/><path d="M8.5 21v-1a3.5 3.5 0 0 1 7 0v1"/></svg>
+        </div>
+        <h3 class="font-semibold text-stone-900 mb-2">Churches</h3>
+        <p class="text-sm text-stone-600">Ready-to-use resources for Sunday school, small groups, and retreats.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-700"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        </div>
+        <h3 class="font-semibold text-stone-900 mb-2">Servants</h3>
+        <p class="text-sm text-stone-600">Ready-to-use formation tools aligned with Orthodox teaching and the Coptic curriculum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="max-w-3xl mx-auto px-6 py-16 text-center">
+  <h2 class="text-2xl font-bold text-stone-900 mb-4">Get Started for Free</h2>
+  <p class="text-stone-600 mb-8">Download our free starter game and see how formation through play works.</p>
+  <a href="/starter-pack/" class="btn-primary">Download Starter Pack</a>
+  {{ with .Site.Params.email_signup_url }}
+  <div class="mt-10">
+    <p class="text-sm text-stone-500 mb-3">Stay updated on new games and resources:</p>
+    <a href="{{ . }}" class="text-amber-800 font-medium hover:underline">Subscribe for updates</a>
+  </div>
+  {{ end }}
+</section>
+
+{{ end }}
