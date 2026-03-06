@@ -27,7 +27,7 @@ No purchases required. Print at home or at your church.
 
 - [Hugo](https://gohugo.io/) static site generator
 - Custom **Formation** theme
-- Deployed to [GitHub Pages](https://copticcrossbooks.com/)
+- Deployed to [GitHub Pages](https://copticcrossgames.com/)
 
 ## License
 
