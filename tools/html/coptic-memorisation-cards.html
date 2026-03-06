@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  /* Word cards: Coptic text on white */
+  .card.word-card {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+  }
+  .card.word-card .card-category { background-color: #7c3aed; }
+  .card.word-card .coptic-word {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1c1917;
+    margin: 8px 0;
+    direction: ltr;
+  }
+  .card.word-card .transliteration {
+    font-size: 9px;
+    color: #78716c;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .card.word-card .deck-label {
+    font-size: 7px;
+    color: #a8a29e;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Picture cards: English + icon on cream */
+  .card.picture-card {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fefce8;
+  }
+  .card.picture-card .card-category { background-color: #7c3aed; }
+  .card.picture-card .picture-icon { font-size: 36px; margin: 6px 0; }
+  .card.picture-card .english-word {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1c1917;
+    margin-top: 4px;
+  }
+  .card.picture-card .deck-label {
+    font-size: 7px;
+    color: #a8a29e;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Double cards side A (Coptic): purple tint */
+  .card.double-card-coptic {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #f5f3ff;
+  }
+  .card.double-card-coptic .card-category { background-color: #7c3aed; }
+  .card.double-card-coptic .coptic-word {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1c1917;
+    margin: 8px 0;
+  }
+  .card.double-card-coptic .transliteration {
+    font-size: 9px;
+    color: #78716c;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .card.double-card-coptic .deck-label {
+    font-size: 7px;
+    color: #7c3aed;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  /* Double cards side B (Picture): purple-cream */
+  .card.double-card-picture {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #faf5ff;
+  }
+  .card.double-card-picture .card-category { background-color: #7c3aed; }
+  .card.double-card-picture .picture-icon { font-size: 36px; margin: 6px 0; }
+  .card.double-card-picture .english-word {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1c1917;
+    margin-top: 4px;
+  }
+  .card.double-card-picture .deck-label {
+    font-size: 7px;
+    color: #7c3aed;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .cut-guide {
+    font-size: 8px;
+    color: #a8a29e;
+    text-align: center;
+    padding: 4px 0;
+  }
+</style>
+</head>
+<body>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Print on cardstock, cut along borders &mdash; Page 1 of 7 (Word Deck 1-9)</p>
+
+<!-- PAGE 1: Word Deck cards 1-9 -->
+<div class="card-page standard">
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C80;&#x2CA5;&#x2C93;&#x2C8F;&#x2CA9;&#x2CA3;</div>
+    <div class="transliteration">Epnouti</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C80;&#x2C81;&#x2C91;&#x2CA3;&#x2C8F;</div>
+    <div class="transliteration">Asoro</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA5;&#x2C89;&#x2C93;&#x2C91;&#x2CA7;&#x2C8F;&#x2C95;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Theotokos</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA1;&#x2CA3;&#x2C81;&#x2CA5;&#x2CA1;&#x2C81;&#x2CA9;&#x2CA1;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Stavros</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C81;&#x2C91;&#x2C81;&#x2CA3;&#x2C93;</div>
+    <div class="transliteration">Agapi</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C89;&#x2C93;&#x2CA1;&#x2C93;&#x2C8F;&#x2C93;</div>
+    <div class="transliteration">Eirini</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA9;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Fos</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C8F;&#x2CA9;&#x2C93;</div>
+    <div class="transliteration">Ouoini</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C99;&#x2C8F;&#x2C8F;&#x2CA9;</div>
+    <div class="transliteration">Moou</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 2 of 7 (Word Deck 10-15 + Picture Deck 1-3)</p>
+
+<!-- PAGE 2: Word Deck 10-15 + Picture Deck 1-3 -->
+<div class="card-page standard">
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C89;&#x2C95;&#x2C95;&#x2C97;&#x2C93;&#x2CA1;&#x2C93;&#x2C81;</div>
+    <div class="transliteration">Ekklisia</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA3;&#x2CA1;&#x2C8F;&#x2CA1;&#x2CA7;&#x2C93;</div>
+    <div class="transliteration">Proseuchi</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C8F;&#x2CA9;&#x2C93;&#x2C95;</div>
+    <div class="transliteration">Ouik</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C93;&#x2CA1;&#x2CA3;</div>
+    <div class="transliteration">Irp</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C81;&#x2C91;&#x2C91;&#x2C89;&#x2C97;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Angelos</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <div class="card word-card">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA3;&#x2C93;&#x2CA9;&#x2C89;</div>
+    <div class="transliteration">Pife</div>
+    <div class="deck-label">Word Deck</div>
+  </div>
+
+  <!-- Picture Deck starts -->
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128591;</div>
+    <div class="english-word">God</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#10013;</div>
+    <div class="english-word">Cross</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9768;</div>
+    <div class="english-word">Mother of God</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 3 of 7 (Picture Deck 4-12)</p>
+
+<!-- PAGE 3: Picture Deck 4-12 -->
+<div class="card-page standard">
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128151;</div>
+    <div class="english-word">Love</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9774;</div>
+    <div class="english-word">Peace</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127774;</div>
+    <div class="english-word">Light</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128161;</div>
+    <div class="english-word">Light (Spiritual)</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128167;</div>
+    <div class="english-word">Water</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9962;</div>
+    <div class="english-word">Church</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128588;</div>
+    <div class="english-word">Prayer</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127838;</div>
+    <div class="english-word">Bread</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127863;</div>
+    <div class="english-word">Wine</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 4 of 7 (Picture Deck 13-15 + Double Deck Coptic Side 1-6)</p>
+
+<!-- PAGE 4: Picture Deck 13-15 + Double Deck Coptic Side 1-6 -->
+<div class="card-page standard">
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128124;</div>
+    <div class="english-word">Angel</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127775;</div>
+    <div class="english-word">Heaven</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <div class="card picture-card">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128080;</div>
+    <div class="english-word">Father</div>
+    <div class="deck-label">Picture Deck</div>
+  </div>
+
+  <!-- Double Deck - Coptic Side -->
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C80;&#x2CA5;&#x2C93;&#x2C8F;&#x2CA9;&#x2CA3;</div>
+    <div class="transliteration">Epnouti</div>
+    <div class="deck-label">Double Deck &#x2194; God</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C80;&#x2C81;&#x2C91;&#x2CA3;&#x2C8F;</div>
+    <div class="transliteration">Asoro</div>
+    <div class="deck-label">Double Deck &#x2194; Cross</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA5;&#x2C89;&#x2C93;&#x2C91;&#x2CA7;&#x2C8F;&#x2C95;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Theotokos</div>
+    <div class="deck-label">Double Deck &#x2194; Mother of God</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA1;&#x2CA3;&#x2C81;&#x2CA5;&#x2CA1;&#x2C81;&#x2CA9;&#x2CA1;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Stavros</div>
+    <div class="deck-label">Double Deck &#x2194; Cross</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C81;&#x2C91;&#x2C81;&#x2CA3;&#x2C93;</div>
+    <div class="transliteration">Agapi</div>
+    <div class="deck-label">Double Deck &#x2194; Love</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C89;&#x2C93;&#x2CA1;&#x2C93;&#x2C8F;&#x2C93;</div>
+    <div class="transliteration">Eirini</div>
+    <div class="deck-label">Double Deck &#x2194; Peace</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 5 of 7 (Double Deck Coptic Side 7-15)</p>
+
+<!-- PAGE 5: Double Deck Coptic Side 7-15 -->
+<div class="card-page standard">
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA9;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Fos</div>
+    <div class="deck-label">Double Deck &#x2194; Light</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C8F;&#x2CA9;&#x2C93;</div>
+    <div class="transliteration">Ouoini</div>
+    <div class="deck-label">Double Deck &#x2194; Light (Spiritual)</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C99;&#x2C8F;&#x2C8F;&#x2CA9;</div>
+    <div class="transliteration">Moou</div>
+    <div class="deck-label">Double Deck &#x2194; Water</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C89;&#x2C95;&#x2C95;&#x2C97;&#x2C93;&#x2CA1;&#x2C93;&#x2C81;</div>
+    <div class="transliteration">Ekklisia</div>
+    <div class="deck-label">Double Deck &#x2194; Church</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA3;&#x2CA1;&#x2C8F;&#x2CA1;&#x2CA7;&#x2C93;</div>
+    <div class="transliteration">Proseuchi</div>
+    <div class="deck-label">Double Deck &#x2194; Prayer</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C8F;&#x2CA9;&#x2C93;&#x2C95;</div>
+    <div class="transliteration">Ouik</div>
+    <div class="deck-label">Double Deck &#x2194; Bread</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C93;&#x2CA1;&#x2CA3;</div>
+    <div class="transliteration">Irp</div>
+    <div class="deck-label">Double Deck &#x2194; Wine</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2C81;&#x2C91;&#x2C91;&#x2C89;&#x2C97;&#x2C8F;&#x2CA1;</div>
+    <div class="transliteration">Angelos</div>
+    <div class="deck-label">Double Deck &#x2194; Angel</div>
+  </div>
+
+  <div class="card double-card-coptic">
+    <div class="card-category"></div>
+    <div class="coptic-word">&#x2CA3;&#x2C93;&#x2CA9;&#x2C89;</div>
+    <div class="transliteration">Pife</div>
+    <div class="deck-label">Double Deck &#x2194; Heaven</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 6 of 7 (Double Deck Picture Side 1-9 &mdash; print on reverse of pages 4-5)</p>
+
+<!-- PAGE 6: Double Deck Picture Side 1-9 (reverse of Coptic side) -->
+<div class="card-page standard">
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128591;</div>
+    <div class="english-word">God</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#10013;</div>
+    <div class="english-word">Cross</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9768;</div>
+    <div class="english-word">Mother of God</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128151;</div>
+    <div class="english-word">Love</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9774;</div>
+    <div class="english-word">Peace</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127774;</div>
+    <div class="english-word">Light</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128161;</div>
+    <div class="english-word">Light (Spiritual)</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128167;</div>
+    <div class="english-word">Water</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#9962;</div>
+    <div class="english-word">Church</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+</div>
+
+<p class="cut-guide">Coptic Memorisation Game &mdash; Coptic Cross Games &mdash; Page 7 of 7 (Double Deck Picture Side 10-15 + Card Backs)</p>
+
+<!-- PAGE 7: Double Deck Picture Side 10-15 + Card Backs -->
+<div class="card-page standard">
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128588;</div>
+    <div class="english-word">Prayer</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127838;</div>
+    <div class="english-word">Bread</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127863;</div>
+    <div class="english-word">Wine</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128124;</div>
+    <div class="english-word">Angel</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#127775;</div>
+    <div class="english-word">Heaven</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <div class="card double-card-picture">
+    <div class="card-category"></div>
+    <div class="picture-icon">&#128080;</div>
+    <div class="english-word">Father</div>
+    <div class="deck-label">Double Deck</div>
+  </div>
+
+  <!-- Card backs -->
+  <div class="card-back">
+    <div><div class="back-cross">&#10013;</div><div class="back-title">COPTIC<br>MEMORY</div></div>
+  </div>
+  <div class="card-back">
+    <div><div class="back-cross">&#10013;</div><div class="back-title">COPTIC<br>MEMORY</div></div>
+  </div>
+  <div class="card-back">
+    <div><div class="back-cross">&#10013;</div><div class="back-title">COPTIC<br>MEMORY</div></div>
+  </div>
+</div>
+
+<p class="copyright">&copy; 2026 Coptic Cross Games. Free to print for personal and church use. Do not redistribute or sell.</p>
+</body>
+</html>
