@@ -16,6 +16,19 @@ Downloadable print-and-play formation games covering Scripture, saints, liturgic
 
 See [game-library-plan.md](game-library-plan.md) for the full 30-game library plan, reusable mechanics, release strategy, and Hugo content packaging.
 
+### Planned: Age Group Browsing
+
+Add an `age_groups` taxonomy so users can browse games by age group. Proposed groups:
+
+- **Young Children (4-7)** — 5 games
+- **Children (8-12)** — 6 games
+- **Tweens (10-15)** — 2 games (overlap with Children and Teens)
+- **Teens (13-17)** — 6 games
+- **Adults (18+)** — 5 games
+- **All Ages** — 4 games
+
+Implementation: add `age_groups` to hugo.toml taxonomies, add the field to each game's front matter, create layout templates mirroring categories, and add a nav menu item. Games with overlapping age ranges (e.g. "10-15") would appear in multiple groups.
+
 ---
 
 ## Stage 2: Formation Browser / Interactive Games
