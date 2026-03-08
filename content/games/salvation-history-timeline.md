@@ -40,7 +40,7 @@ The **Leader Guide** includes brief narrative summaries for each era, connecting
 
 ## Components
 
-- **Event Cards** (60) — Biblical events with dates, descriptions, and Scripture references
+- **Event Cards** (62) — Biblical events with dates, descriptions, and Scripture references
 - **Timeline Board** (1 page) — Printable timeline with era markers
 - **Rules** (2 pages) — Setup and gameplay
 - **Leader Guide** (4 pages) — Era summaries, discussion prompts, and connections to the Coptic lectionary
