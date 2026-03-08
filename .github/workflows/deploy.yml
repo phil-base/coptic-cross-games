@@ -35,6 +35,21 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install PDF dependencies
+        working-directory: tools
+        run: npm ci
+
+      - name: Generate PDFs from HTML
+        working-directory: tools
+        run: bash build-all.sh
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

@@ -38,16 +38,21 @@ node generate-pdf.js html/narrow-way-score-track.html "$STATIC/the-narrow-way/sc
 node generate-pdf.js html/narrow-way-leader-guide.html "$STATIC/the-narrow-way/leader-guide.pdf"
 
 # Salvation History Timeline
-if [ -f html/salvation-timeline-cards.html ]; then
-  echo "  Salvation History Timeline..."
-  node generate-pdf.js html/salvation-timeline-cards.html "$STATIC/salvation-history-timeline/cards.pdf"
-  node generate-pdf.js html/salvation-timeline-board.html "$STATIC/salvation-history-timeline/board.pdf" --landscape
-  node generate-pdf.js html/salvation-timeline-rules.html "$STATIC/salvation-history-timeline/rules.pdf"
-  node generate-pdf.js html/salvation-timeline-leader-guide.html "$STATIC/salvation-history-timeline/leader-guide.pdf"
-fi
+echo "  Salvation History Timeline..."
+node generate-pdf.js html/salvation-timeline-cards.html "$STATIC/salvation-history-timeline/cards.pdf"
+node generate-pdf.js html/salvation-timeline-board.html "$STATIC/salvation-history-timeline/board.pdf" --landscape
+node generate-pdf.js html/salvation-timeline-rules.html "$STATIC/salvation-history-timeline/rules.pdf"
+node generate-pdf.js html/salvation-timeline-leader-guide.html "$STATIC/salvation-history-timeline/leader-guide.pdf"
 
-# Remove quarantine from all generated PDFs
-echo "Removing quarantine attributes..."
-find "$STATIC" -name "*.pdf" -size +1k -exec xattr -d com.apple.quarantine {} 2>/dev/null \;
+# Coptic Memorisation
+echo "  Coptic Memorisation..."
+node generate-pdf.js html/coptic-memorisation-cards.html "$STATIC/coptic-memorisation/cards.pdf"
+node generate-pdf.js html/coptic-memorisation-rules.html "$STATIC/coptic-memorisation/rules.pdf"
+
+# Remove quarantine from all generated PDFs (macOS only)
+if command -v xattr &> /dev/null; then
+  echo "Removing quarantine attributes..."
+  find "$STATIC" -name "*.pdf" -size +1k -exec xattr -d com.apple.quarantine {} 2>/dev/null \;
+fi
 
 echo "Done! All PDFs generated."
