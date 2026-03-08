@@ -50,29 +50,117 @@ Below the frontmatter, write the game description in Markdown. Recommended secti
 - **Setup** - How to prepare
 - **Ideal For** - Who should play this game
 
-### 4. Upload PDF assets
+### 4. Create the HTML templates for PDF generation
 
-Place downloadable files in `static/games/your-game-name/`:
+PDFs are generated from HTML templates using Puppeteer (headless Chrome). Each PDF component (cards, rules, leader guide, etc.) has its own HTML file.
 
+**Location:** `tools/html/`
+
+**Naming convention:** `{game-slug}-{component}.html` — e.g., `saints-memory-cards.html`, `desert-fathers-leader-guide.html`
+
+**Shared stylesheet:** All templates import `../templates/print-base.css` which provides:
+- Card grids: `.card-page.standard` (2.5"×3.5", 9 per page), `.card-page.half` (15 per page), `.card-page.wide` (8 per page)
+- Card structure: `.card`, `.card-title`, `.card-body`, `.card-footer`, `.card-category` (colour band)
+- Card backs: `.card-back` with `.back-cross` and `.back-title`
+- Document pages: `.doc-page` with `h1`/`h2`/`h3`, `.subtitle`, `.game-meta`, `.callout`, `.scripture`
+- Category colours: `.cat-scripture` (blue), `.cat-saints` (red), `.cat-liturgical` (purple), `.cat-virtue` (teal), `.cat-discernment` (amber), `.cat-family` (cyan)
+- Reflection sheets: `.reflection-line`
+- Board pages: `.board-page` (landscape, 10"×7.5")
+
+**Template structure for cards:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  /* Game-specific card styling */
+</style>
+</head>
+<body>
+<p class="cut-guide">Game Name — Coptic Cross Games — Print on cardstock — Page 1 of N</p>
+<div class="card-page standard">
+  <div class="card">
+    <div class="card-category cat-scripture"></div>
+    <div class="card-title">Card Title</div>
+    <div class="card-body">Card content text</div>
+    <div class="card-footer">Footer text</div>
+  </div>
+  <!-- 9 cards per page -->
+</div>
+<!-- Card backs page at the end -->
+<p class="copyright">© 2026 Coptic Cross Games. Free to print for personal and church use.</p>
+</body>
+</html>
 ```
-static/games/your-game-name/
-  cards.pdf
-  rules.pdf
-  leader-guide.pdf
+
+**Template structure for rules/leader guides:**
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+</head>
+<body>
+<div class="doc-page">
+  <h1>Game Name</h1>
+  <p class="subtitle">Rules — Ages X-Y — N Players — M Minutes</p>
+  <div class="game-meta">
+    <div><dt>Age Range</dt><dd>X-Y</dd></div>
+    <div><dt>Players</dt><dd>N</dd></div>
+    <div><dt>Play Time</dt><dd>M minutes</dd></div>
+    <div><dt>Difficulty</dt><dd>Easy</dd></div>
+  </div>
+  <!-- Sections: About, Components, Setup, How to Play, Tips, etc. -->
+  <div class="footer-line">Game Name • Coptic Cross Games • copticcrossgames.com</div>
+</div>
+</body>
+</html>
 ```
 
-These are referenced by the `download_files` frontmatter field. Paths must match exactly.
+### 5. Add the game to the build script
 
-### 5. Commit and push
+Edit `tools/build-all.sh` and add entries for each PDF:
+
+```bash
+# Your Game Name
+echo "  Your Game Name..."
+node generate-pdf.js html/your-game-cards.html "$STATIC/your-game-name/cards.pdf"
+node generate-pdf.js html/your-game-rules.html "$STATIC/your-game-name/rules.pdf"
+node generate-pdf.js html/your-game-leader-guide.html "$STATIC/your-game-name/leader-guide.pdf"
+```
+
+Add the `--landscape` flag for boards: `node generate-pdf.js html/your-game-board.html "$STATIC/your-game-name/board.pdf" --landscape`
+
+**PDF generator settings** (configured in `tools/generate-pdf.js`):
+- Format: Letter (8.5" × 11")
+- Margins: 0.4" all sides
+- Print backgrounds: enabled
+- Landscape: optional via `--landscape` flag
+
+### 6. Generate PDFs locally
+
+```bash
+cd tools
+npm ci          # Install Puppeteer (first time only)
+bash build-all.sh
+```
+
+PDFs are written to `static/games/{game-name}/`. The CI pipeline also runs this automatically on deploy.
+
+### 7. Commit and push
 
 ```bash
 git add content/games/your-game-name.md
+git add tools/html/your-game-*.html
 git add static/games/your-game-name/
 git commit -m "Add Your Game Name"
 git push
 ```
 
-The site rebuilds automatically via GitHub Actions.
+The site rebuilds automatically via GitHub Actions, regenerating all PDFs fresh.
 
 ## Categories
 

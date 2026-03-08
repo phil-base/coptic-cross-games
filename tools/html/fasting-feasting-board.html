@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  .board {
+    width: 10in;
+    height: 7.5in;
+    padding: 0.2in;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .board-title {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #1c1917;
+    margin-bottom: 2px;
+  }
+
+  .board-subtitle {
+    font-size: 9px;
+    color: #78716c;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  /* Calendar wheel container */
+  .wheel-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wheel {
+    width: 6.4in;
+    height: 5.6in;
+    position: relative;
+  }
+
+  /* Centre hub */
+  .wheel-centre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.4in;
+    height: 1.4in;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #e9d5ff;
+    z-index: 2;
+  }
+
+  .wheel-centre .centre-cross {
+    font-size: 24px;
+    margin-bottom: 2px;
+  }
+
+  .wheel-centre .centre-title {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* Month segments arranged in a circle */
+  .month {
+    position: absolute;
+    width: 1.7in;
+    text-align: center;
+    transform-origin: center center;
+  }
+
+  .month-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1c1917;
+    margin-bottom: 1px;
+  }
+
+  .month-dates {
+    font-size: 7px;
+    color: #78716c;
+    margin-bottom: 4px;
+  }
+
+  .month-slots {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+  }
+
+  .card-slot {
+    width: 0.34in;
+    height: 0.46in;
+    border: 1px dashed #c4b5fd;
+    border-radius: 3px;
+    background: rgba(245, 243, 255, 0.5);
+  }
+
+  /* Position each month around the wheel */
+  /* 13 months at ~27.7 degrees apart, starting from top (Tout = month 1) */
+  .month-1  { top: -0.1in;  left: 50%; transform: translateX(-50%); }
+  .month-2  { top: 0.15in;  right: 0.05in; }
+  .month-3  { top: 0.9in;  right: -0.3in; }
+  .month-4  { top: 1.8in; right: -0.4in; }
+  .month-5  { top: 2.7in; right: -0.3in; }
+  .month-6  { top: 3.5in; right: 0.05in; }
+  .month-7  { bottom: -0.1in; left: 50%; transform: translateX(-50%); }
+  .month-8  { top: 3.5in; left: 0.05in; }
+  .month-9  { top: 2.7in; left: -0.3in; }
+  .month-10 { top: 1.8in; left: -0.4in; }
+  .month-11 { top: 0.9in; left: -0.3in; }
+  .month-12 { top: 0.15in; left: 0.05in; }
+  .month-13 { top: 2.3in; left: 50%; transform: translateX(-50%); }
+
+  /* Colour accents for liturgical seasons */
+  .month-fast .month-label { color: #991b1b; }
+  .month-feast .month-label { color: #b45309; }
+  .month-season .month-label { color: #6d28d9; }
+
+  /* Connecting lines (decorative arcs) */
+  .wheel-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4.2in;
+    height: 4.2in;
+    border: 2px solid #e9d5ff;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .wheel-ring-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5.4in;
+    height: 5.4in;
+    border: 1px solid #f3e8ff;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  /* Score track */
+  .score-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 6px;
+    padding: 4px 0;
+    border-top: 1px solid #e7e5e4;
+  }
+
+  .score-track-label {
+    font-size: 8px;
+    font-weight: 700;
+    color: #78716c;
+    margin-right: 6px;
+  }
+
+  .score-cell {
+    width: 0.22in;
+    height: 0.22in;
+    border: 1px solid #d6d3d1;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6px;
+    color: #a8a29e;
+  }
+
+  .score-cell:nth-child(6n+1) {
+    background: #faf5ff;
+  }
+
+  .score-cell.score-5 {
+    background: #f3e8ff;
+    font-weight: 700;
+    color: #7c3aed;
+  }
+
+  .copyright-board {
+    font-size: 7px;
+    color: #a8a29e;
+    text-align: center;
+    padding: 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+  <div class="board-title">Fasting &amp; Feasting</div>
+  <div class="board-subtitle">The Coptic Calendar &mdash; Place Season Cards on the correct month</div>
+
+  <div class="wheel-container">
+    <div class="wheel">
+      <!-- Decorative rings -->
+      <div class="wheel-ring"></div>
+      <div class="wheel-ring-outer"></div>
+
+      <!-- Centre hub -->
+      <div class="wheel-centre">
+        <div class="centre-cross">&#x2720;</div>
+        <div class="centre-title">COPTIC<br>CALENDAR</div>
+      </div>
+
+      <!-- Month 1: Tout -->
+      <div class="month month-1 month-feast">
+        <div class="month-label">Tout</div>
+        <div class="month-dates">11 Sep &ndash; 10 Oct</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 2: Baba -->
+      <div class="month month-2">
+        <div class="month-label">Baba</div>
+        <div class="month-dates">11 Oct &ndash; 9 Nov</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 3: Hathor -->
+      <div class="month month-3 month-fast">
+        <div class="month-label">Hathor</div>
+        <div class="month-dates">10 Nov &ndash; 9 Dec</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 4: Kiahk -->
+      <div class="month month-4 month-season">
+        <div class="month-label">Kiahk</div>
+        <div class="month-dates">10 Dec &ndash; 8 Jan</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 5: Tobi -->
+      <div class="month month-5 month-feast">
+        <div class="month-label">Tobi</div>
+        <div class="month-dates">9 Jan &ndash; 7 Feb</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 6: Amshir -->
+      <div class="month month-6 month-fast">
+        <div class="month-label">Amshir</div>
+        <div class="month-dates">8 Feb &ndash; 9 Mar</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 7: Baramhat -->
+      <div class="month month-7 month-fast">
+        <div class="month-label">Baramhat</div>
+        <div class="month-dates">10 Mar &ndash; 8 Apr</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 8: Baramuda -->
+      <div class="month month-8">
+        <div class="month-label">Baramuda</div>
+        <div class="month-dates">9 Apr &ndash; 8 May</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 9: Bashans -->
+      <div class="month month-9 month-feast">
+        <div class="month-label">Bashans</div>
+        <div class="month-dates">9 May &ndash; 7 Jun</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 10: Paoni -->
+      <div class="month month-10">
+        <div class="month-label">Paoni</div>
+        <div class="month-dates">8 Jun &ndash; 7 Jul</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 11: Epep -->
+      <div class="month month-11 month-fast">
+        <div class="month-label">Epep</div>
+        <div class="month-dates">8 Jul &ndash; 6 Aug</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 12: Mesori -->
+      <div class="month month-12 month-feast">
+        <div class="month-label">Mesori</div>
+        <div class="month-dates">7 Aug &ndash; 5 Sep</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+          <div class="card-slot"></div>
+        </div>
+      </div>
+
+      <!-- Month 13: Nasie (intercalary) -->
+      <div class="month month-13">
+        <div class="month-label">Nasie</div>
+        <div class="month-dates">6&ndash;10 Sep (5&ndash;6 days)</div>
+        <div class="month-slots">
+          <div class="card-slot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Score Track -->
+  <div class="score-track">
+    <div class="score-track-label">SCORE</div>
+    <div class="score-cell">0</div>
+    <div class="score-cell">1</div>
+    <div class="score-cell">2</div>
+    <div class="score-cell">3</div>
+    <div class="score-cell">4</div>
+    <div class="score-cell score-5">5</div>
+    <div class="score-cell">6</div>
+    <div class="score-cell">7</div>
+    <div class="score-cell">8</div>
+    <div class="score-cell">9</div>
+    <div class="score-cell score-5">10</div>
+    <div class="score-cell">11</div>
+    <div class="score-cell">12</div>
+    <div class="score-cell">13</div>
+    <div class="score-cell">14</div>
+    <div class="score-cell score-5">15</div>
+    <div class="score-cell">16</div>
+    <div class="score-cell">17</div>
+    <div class="score-cell">18</div>
+    <div class="score-cell">19</div>
+    <div class="score-cell score-5">20</div>
+    <div class="score-cell">21</div>
+    <div class="score-cell">22</div>
+    <div class="score-cell">23</div>
+    <div class="score-cell">24</div>
+    <div class="score-cell score-5">25</div>
+    <div class="score-cell">26</div>
+    <div class="score-cell">27</div>
+    <div class="score-cell">28</div>
+    <div class="score-cell">29</div>
+    <div class="score-cell score-5">30</div>
+    <div class="score-cell">31</div>
+    <div class="score-cell">32</div>
+    <div class="score-cell">33</div>
+    <div class="score-cell">34</div>
+    <div class="score-cell score-5">35</div>
+  </div>
+
+  <div class="copyright-board">Fasting &amp; Feasting &bull; Coptic Cross Games &bull; coptic-cross-games.github.io</div>
+</div>
+
+</body>
+</html>

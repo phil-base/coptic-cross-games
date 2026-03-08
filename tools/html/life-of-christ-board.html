@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  .board {
+    width: 10in;
+    height: 7.5in;
+    padding: 0.25in;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 50%, #fffbeb 100%);
+    border: 2px solid #1d4ed8;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .board-title {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 2px;
+  }
+
+  .board-subtitle {
+    font-size: 9px;
+    color: #78716c;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  /* Journey path */
+  .journey {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 4px;
+    position: relative;
+  }
+
+  .stage-label {
+    font-size: 8px;
+    font-weight: 700;
+    text-align: center;
+    padding: 5px 4px;
+    border-radius: 6px;
+    color: #fff;
+    line-height: 1.3;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .stage-1 .stage-label { background: #065f46; }
+  .stage-2 .stage-label { background: #1d4ed8; }
+  .stage-3 .stage-label { background: #7c3aed; }
+  .stage-4 .stage-label { background: #b91c1c; }
+  .stage-5 .stage-label { background: #b45309; }
+
+  .stage-cards {
+    font-size: 7px;
+    color: #78716c;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  /* Path steps */
+  .path-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    width: 100%;
+  }
+
+  .path-step {
+    border: 1.5px solid #d6d3d1;
+    border-radius: 6px;
+    padding: 3px 5px;
+    text-align: center;
+    background: rgba(255,255,255,0.8);
+    font-size: 7px;
+    color: #44403c;
+    line-height: 1.3;
+  }
+
+  .stage-1 .path-step { border-left: 3px solid #065f46; }
+  .stage-2 .path-step { border-left: 3px solid #1d4ed8; }
+  .stage-3 .path-step { border-left: 3px solid #7c3aed; }
+  .stage-4 .path-step { border-left: 3px solid #b91c1c; }
+  .stage-5 .path-step { border-left: 3px solid #b45309; }
+
+  .path-step.start {
+    background: #ecfdf5;
+    border-color: #065f46;
+    font-weight: 700;
+    color: #065f46;
+  }
+
+  .path-step.end {
+    background: #fffbeb;
+    border-color: #b45309;
+    font-weight: 700;
+    color: #92400e;
+  }
+
+  .path-step strong { display: block; font-size: 7.5px; color: #1c1917; }
+
+  /* Card deck area */
+  .deck-area {
+    border: 1.5px dashed #a8a29e;
+    border-radius: 6px;
+    padding: 4px;
+    margin-top: 4px;
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deck-label {
+    font-size: 6.5px;
+    color: #a8a29e;
+    font-style: italic;
+  }
+
+  /* Arrow between stages */
+  .stage-arrow {
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #d6d3d1;
+    z-index: 1;
+  }
+
+  /* Resource tracking */
+  .resource-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 8px 16px;
+    margin-top: 6px;
+    background: rgba(255,255,255,0.7);
+    border: 1.5px solid #e7e5e4;
+    border-radius: 8px;
+  }
+
+  .resource {
+    text-align: center;
+  }
+
+  .resource-name {
+    font-size: 8px;
+    font-weight: 700;
+    color: #1c1917;
+    margin-bottom: 3px;
+  }
+
+  .resource-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+  }
+
+  .resource-slot {
+    width: 0.28in;
+    height: 0.28in;
+    border: 1px dashed #d6d3d1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6px;
+    color: #a8a29e;
+    background: #fff;
+  }
+
+  .resource-faith .resource-name { color: #1d4ed8; }
+  .resource-courage .resource-name { color: #b91c1c; }
+  .resource-love .resource-name { color: #be185d; }
+  .resource-prayer .resource-name { color: #7c3aed; }
+
+  .resource-faith .resource-slot { border-color: #93c5fd; }
+  .resource-courage .resource-slot { border-color: #fca5a5; }
+  .resource-love .resource-slot { border-color: #f9a8d4; }
+  .resource-prayer .resource-slot { border-color: #c4b5fd; }
+
+  .board-footer {
+    font-size: 7px;
+    color: #a8a29e;
+    text-align: center;
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid #e7e5e4;
+  }
+
+  /* Token sheet page */
+  .token-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 6px;
+    padding: 16px;
+    max-width: 7.5in;
+  }
+
+  .token {
+    width: 0.55in;
+    height: 0.55in;
+    border: 1.5px dashed #a8a29e;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    font-size: 16px;
+  }
+
+  .token-label {
+    font-size: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1px;
+  }
+
+  .token.faith { border-color: #1d4ed8; }
+  .token.faith .token-label { color: #1d4ed8; }
+  .token.courage { border-color: #b91c1c; }
+  .token.courage .token-label { color: #b91c1c; }
+  .token.love { border-color: #be185d; }
+  .token.love .token-label { color: #be185d; }
+  .token.prayer { border-color: #7c3aed; }
+  .token.prayer .token-label { color: #7c3aed; }
+
+  .token-title {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: #1e3a8a;
+    padding: 12px 0 4px;
+  }
+
+  .token-subtitle {
+    font-size: 9px;
+    color: #78716c;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Journey Board (landscape) -->
+<div class="board-page">
+<div class="board">
+  <div class="board-title">The Life of Christ</div>
+  <div class="board-subtitle">A cooperative journey through the Gospel &mdash; travel together through five stages &bull; manage Faith, Courage, Love, and Prayer</div>
+
+  <div class="journey">
+
+    <div class="stage stage-1">
+      <div class="stage-label">Stage 1<br>Birth &amp; Childhood</div>
+      <div class="stage-cards">8 cards</div>
+      <div class="path-steps">
+        <div class="path-step start">&#11088; START<br>Bethlehem</div>
+        <div class="path-step"><strong>Annunciation</strong>Gabriel visits Mary</div>
+        <div class="path-step"><strong>Nativity</strong>Born in a manger</div>
+        <div class="path-step"><strong>Shepherds</strong>Good news of great joy</div>
+        <div class="path-step"><strong>Wise Men</strong>Gifts for the King</div>
+        <div class="path-step"><strong>Egypt</strong>Flight by night</div>
+        <div class="path-step"><strong>Temple</strong>Simeon&rsquo;s prophecy</div>
+        <div class="path-step"><strong>Boy Jesus</strong>My Father&rsquo;s house</div>
+      </div>
+      <div class="deck-area"><span class="deck-label">Stage 1 deck</span></div>
+      <div class="stage-arrow">&#9654;</div>
+    </div>
+
+    <div class="stage stage-2">
+      <div class="stage-label">Stage 2<br>Baptism &amp; Temptation</div>
+      <div class="stage-cards">8 cards</div>
+      <div class="path-steps">
+        <div class="path-step"><strong>John the Baptist</strong>Prepare the way</div>
+        <div class="path-step"><strong>Baptism</strong>The Jordan River</div>
+        <div class="path-step"><strong>Temptation 1</strong>Stones to bread</div>
+        <div class="path-step"><strong>Temptation 2</strong>All the kingdoms</div>
+        <div class="path-step"><strong>Temptation 3</strong>Pinnacle of Temple</div>
+        <div class="path-step"><strong>Angels</strong>Ministry in the desert</div>
+        <div class="path-step"><strong>First Disciples</strong>Follow Me</div>
+        <div class="path-step"><strong>Cana</strong>Water into wine</div>
+      </div>
+      <div class="deck-area"><span class="deck-label">Stage 2 deck</span></div>
+      <div class="stage-arrow">&#9654;</div>
+    </div>
+
+    <div class="stage stage-3">
+      <div class="stage-label">Stage 3<br>Ministry &amp; Teaching</div>
+      <div class="stage-cards">16 cards</div>
+      <div class="path-steps">
+        <div class="path-step"><strong>Miracles</strong>Healing &amp; feeding</div>
+        <div class="path-step"><strong>Parables</strong>Stories of the Kingdom</div>
+        <div class="path-step"><strong>Transfiguration</strong>Divine glory revealed</div>
+        <div class="path-step"><strong>Encounters</strong>The lost are found</div>
+        <div class="path-step"><strong>Sending Out</strong>The seventy go forth</div>
+        <div class="path-step"><strong>Opposition</strong>Pharisees resist</div>
+        <div class="path-step"><strong>Confession</strong>&ldquo;You are the Christ&rdquo;</div>
+        <div class="path-step"><strong>Lazarus</strong>Raised from the dead</div>
+      </div>
+      <div class="deck-area"><span class="deck-label">Stage 3 deck</span></div>
+      <div class="stage-arrow">&#9654;</div>
+    </div>
+
+    <div class="stage stage-4">
+      <div class="stage-label">Stage 4<br>Passion &amp; Cross</div>
+      <div class="stage-cards">10 cards</div>
+      <div class="path-steps">
+        <div class="path-step"><strong>Palm Sunday</strong>Hosanna!</div>
+        <div class="path-step"><strong>Last Supper</strong>This is My Body</div>
+        <div class="path-step"><strong>Foot Washing</strong>The servant King</div>
+        <div class="path-step"><strong>Gethsemane</strong>Not My will</div>
+        <div class="path-step"><strong>Betrayal</strong>Judas&rsquo; kiss</div>
+        <div class="path-step"><strong>Denial</strong>Peter weeps</div>
+        <div class="path-step"><strong>Pilate</strong>Crucify Him!</div>
+        <div class="path-step"><strong>Crucifixion</strong>The Cross</div>
+        <div class="path-step"><strong>Darkness</strong>Three hours</div>
+        <div class="path-step"><strong>Burial</strong>The sealed tomb</div>
+      </div>
+      <div class="deck-area"><span class="deck-label">Stage 4 deck</span></div>
+      <div class="stage-arrow">&#9654;</div>
+    </div>
+
+    <div class="stage stage-5">
+      <div class="stage-label">Stage 5<br>Resurrection &amp; Ascension</div>
+      <div class="stage-cards">6 cards</div>
+      <div class="path-steps">
+        <div class="path-step"><strong>Empty Tomb</strong>He is risen!</div>
+        <div class="path-step"><strong>Mary Magdalene</strong>I have seen the Lord</div>
+        <div class="path-step"><strong>Emmaus</strong>Hearts burning</div>
+        <div class="path-step"><strong>Thomas</strong>My Lord and my God</div>
+        <div class="path-step"><strong>Great Commission</strong>Go and teach all nations</div>
+        <div class="path-step end">&#9729; ASCENSION<br>Glory!</div>
+      </div>
+      <div class="deck-area"><span class="deck-label">Stage 5 deck</span></div>
+    </div>
+
+  </div>
+
+  <div class="resource-track">
+    <div class="resource resource-faith">
+      <div class="resource-name">&#10014; Faith</div>
+      <div class="resource-slots">
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+      </div>
+    </div>
+    <div class="resource resource-courage">
+      <div class="resource-name">&#9876; Courage</div>
+      <div class="resource-slots">
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+      </div>
+    </div>
+    <div class="resource resource-love">
+      <div class="resource-name">&#10084; Love</div>
+      <div class="resource-slots">
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+      </div>
+    </div>
+    <div class="resource resource-prayer">
+      <div class="resource-name">&#128591; Prayer</div>
+      <div class="resource-slots">
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+        <div class="resource-slot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="board-footer">The Life of Christ &bull; Coptic Cross Games &bull; coptic-cross-games.github.io &bull; &copy; 2026 Coptic Cross Games</div>
+</div>
+</div>
+
+<!-- PAGE 2: Token Sheet -->
+<div class="board-page" style="height: auto; padding: 0.25in;">
+  <div class="token-title">The Life of Christ &mdash; Resource Tokens</div>
+  <div class="token-subtitle">Cut out the tokens below. 12 of each type, 48 total. Place tokens on the resource tracking area of the board.</div>
+
+  <div class="token-grid">
+    <!-- Faith tokens (12) -->
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <div class="token faith"><span>&#10014;</span><span class="token-label">Faith</span></div>
+    <!-- Courage tokens (12) -->
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <div class="token courage"><span>&#9876;</span><span class="token-label">Courage</span></div>
+    <!-- Love tokens (12) -->
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <div class="token love"><span>&#10084;</span><span class="token-label">Love</span></div>
+    <!-- Prayer tokens (12) -->
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+    <div class="token prayer"><span>&#128591;</span><span class="token-label">Prayer</span></div>
+  </div>
+</div>
+
+<p class="copyright">&copy; 2026 Coptic Cross Games. Free to print for personal and church use. Do not redistribute or sell.</p>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../templates/print-base.css">
+<style>
+  .board {
+    width: 10in;
+    height: 7.5in;
+    position: relative;
+    background: linear-gradient(180deg, #dbeafe 0%, #ecfdf5 40%, #d1fae5 100%);
+    border: 2px solid #92400e;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .board-title {
+    text-align: center;
+    padding: 12px 0 4px;
+    font-family: 'Literata', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #92400e;
+  }
+  .board-subtitle {
+    text-align: center;
+    font-size: 10px;
+    color: #78716c;
+    margin-bottom: 8px;
+  }
+  .locations {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    padding: 0 20px;
+    height: 4.2in;
+    align-items: start;
+    margin-top: 8px;
+  }
+  .location {
+    border: 2px dashed #a8a29e;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+    min-height: 3.5in;
+  }
+  .location.sheepfold {
+    border-color: #047857;
+    border-style: solid;
+    background: rgba(209, 250, 229, 0.5);
+  }
+  .location .loc-icon { font-size: 36px; margin-bottom: 4px; }
+  .location .loc-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1c1917;
+    margin-bottom: 4px;
+  }
+  .location .loc-desc {
+    font-size: 8px;
+    color: #57534e;
+    margin-bottom: 8px;
+  }
+  .location .sheep-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .sheep-slot {
+    width: 0.6in;
+    height: 0.6in;
+    border: 1px dashed #d6d3d1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #a8a29e;
+  }
+  .day-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin-top: 8px;
+  }
+  .day-tracker .label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #1c1917;
+  }
+  .day-step {
+    width: 0.7in;
+    height: 0.45in;
+    border: 2px solid #d6d3d1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: #fff;
+  }
+  .day-step.start { border-color: #f59e0b; background: #fffbeb; }
+  .day-step.end { border-color: #1e3a5f; background: #1e293b; }
+  .sheep-tokens {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    padding: 6px 0;
+    flex-wrap: wrap;
+  }
+  .sheep-token {
+    width: 0.7in;
+    height: 0.7in;
+    border: 1px dashed #a8a29e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    background: #fff;
+  }
+  .footer-note {
+    text-align: center;
+    font-size: 7px;
+    color: #a8a29e;
+    padding: 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="board-page">
+<div class="board">
+  <div class="board-title">The Good Shepherd</div>
+  <div class="board-subtitle">"I am the Good Shepherd. The Good Shepherd gives His life for the sheep." &mdash; John 10:11</div>
+
+  <div class="locations">
+    <div class="location">
+      <div class="loc-icon">&#127966;</div>
+      <div class="loc-name">Hills</div>
+      <div class="loc-desc">Rocky and high</div>
+      <div class="sheep-slots">
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="loc-icon">&#127759;</div>
+      <div class="loc-name">Valley</div>
+      <div class="loc-desc">Green and wide</div>
+      <div class="sheep-slots">
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="loc-icon">&#127795;</div>
+      <div class="loc-name">Forest</div>
+      <div class="loc-desc">Dark and thick</div>
+      <div class="sheep-slots">
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="loc-icon">&#127754;</div>
+      <div class="loc-name">River</div>
+      <div class="loc-desc">Cool and flowing</div>
+      <div class="sheep-slots">
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+      </div>
+    </div>
+
+    <div class="location sheepfold">
+      <div class="loc-icon">&#127969;</div>
+      <div class="loc-name">Sheepfold</div>
+      <div class="loc-desc">Safe and warm &mdash; HOME!</div>
+      <div class="sheep-slots">
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+        <div class="sheep-slot">&#128017;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-tracker">
+    <div class="label">Day Tracker:</div>
+    <div class="day-step start">&#127774;</div>
+    <div class="day-step">&#127780;</div>
+    <div class="day-step">&#9925;</div>
+    <div class="day-step">&#127766;</div>
+    <div class="day-step">&#127769;</div>
+    <div class="day-step end">&#127761;</div>
+  </div>
+
+  <div class="footer-note">Cut out the sheep tokens below. Place 2-3 face-down on each location (not the Sheepfold) during setup.</div>
+
+  <div class="sheep-tokens">
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+    <div class="sheep-token">&#128017;</div>
+  </div>
+</div>
+</div>
+
+<p class="copyright">&copy; 2026 Coptic Cross Games. Free to print for personal and church use. Do not redistribute or sell.</p>
+</body>
+</html>
