@@ -29,6 +29,10 @@ Add an `age_groups` taxonomy so users can browse games by age group. Proposed gr
 
 Implementation: add `age_groups` to hugo.toml taxonomies, add the field to each game's front matter, create layout templates mirroring categories, and add a nav menu item. Games with overlapping age ranges (e.g. "10-15") would appear in multiple groups.
 
+### Planned: Social Media Presence & Footer Links
+
+When social media accounts are established (Facebook page, Instagram, YouTube channel, etc.), add icon links to the site footer. The footer partial (`themes/formation/layouts/partials/footer.html`) currently has copyright and tagline only. Social links should be configurable via `hugo.toml` params so they can be added without editing templates.
+
 ---
 
 ## Stage 2: Formation Browser / Interactive Games
