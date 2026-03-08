@@ -1,7 +1,22 @@
 {{ define "main" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": {{ .Title }},
+  "description": {{ .Params.description | default .Site.Params.description }},
+  "url": {{ .Permalink }}{{ with .Params.players }},
+  "numberOfPlayers": {{ . }}{{ end }}{{ with .Params.age_range }},
+  "typicalAgeRange": {{ . }}{{ end }},
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ .Site.Title }}
+  }
+}
+</script>
 <article class="max-w-4xl mx-auto px-6 py-16">
   <!-- Breadcrumb -->
-  <nav class="text-sm text-stone-500 mb-8">
+  <nav class="text-sm text-stone-500 mb-8" aria-label="Breadcrumb">
     <a href="/" class="hover:text-amber-800">Home</a>
     <span class="mx-2">/</span>
     <a href="/games/" class="hover:text-amber-800">Games</a>
@@ -105,6 +120,29 @@
         {{ end }}
       </div>
     </aside>
+  </div>
+
+  <!-- Share -->
+  <div class="mt-12 pt-8 border-t border-stone-200">
+    <h3 class="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-3">Share this game</h3>
+    <div class="flex gap-3">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | safeURL }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-stone-100 text-stone-600 rounded-md hover:bg-amber-100 hover:text-amber-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://twitter.com/intent/tweet?url={{ .Permalink | safeURL }}&text={{ .Title | safeURL }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-stone-100 text-stone-600 rounded-md hover:bg-amber-100 hover:text-amber-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        Twitter
+      </a>
+      <a href="mailto:?subject={{ .Title | safeURL }}&body=Check out this game: {{ .Permalink | safeURL }}" class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-stone-100 text-stone-600 rounded-md hover:bg-amber-100 hover:text-amber-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <button onclick="navigator.clipboard.writeText('{{ .Permalink }}');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy link',2000)" class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-stone-100 text-stone-600 rounded-md hover:bg-amber-100 hover:text-amber-800 transition-colors cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Copy link
+      </button>
+    </div>
   </div>
 </article>
 {{ end }}
