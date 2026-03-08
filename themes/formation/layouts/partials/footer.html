@@ -1,6 +1,37 @@
 <footer class="border-t border-stone-200 bg-white mt-20">
-  <div class="max-w-5xl mx-auto px-6 py-12 text-center text-sm text-stone-500">
-    <p class="mb-2">&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
-    <p>Formation through play. Games for faith, virtue, and community.</p>
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <!-- Site -->
+      <div>
+        <h3 class="font-semibold text-stone-900 mb-3">{{ .Site.Title }}</h3>
+        <p class="text-sm text-stone-500 mb-3">Formation through play. Games for faith, virtue, and community.</p>
+        <ul class="text-sm text-stone-500 space-y-1">
+          <li><a href="/games/" class="hover:text-amber-800">Browse Games</a></li>
+          <li><a href="/starter-pack/" class="hover:text-amber-800">Free Starter Pack</a></li>
+          <li><a href="/churches/" class="hover:text-amber-800">For Churches</a></li>
+          <li><a href="/about/" class="hover:text-amber-800">About</a></li>
+        </ul>
+      </div>
+      <!-- Author -->
+      <div>
+        <h3 class="font-semibold text-stone-900 mb-3">About the Author</h3>
+        <p class="text-sm text-stone-500 mb-3">Created by {{ .Site.Params.author_name }}.</p>
+        <ul class="text-sm text-stone-500 space-y-1">
+          <li><a href="{{ .Site.Params.author_url }}" class="hover:text-amber-800" rel="author">Writing &amp; Projects</a></li>
+          <li><a href="https://thequietedge.coach" class="hover:text-amber-800">The Quiet Edge</a></li>
+        </ul>
+      </div>
+      <!-- Resources -->
+      <div>
+        <h3 class="font-semibold text-stone-900 mb-3">Resources</h3>
+        <ul class="text-sm text-stone-500 space-y-1">
+          <li><a href="/categories/" class="hover:text-amber-800">Game Categories</a></li>
+          <li><a href="/link-to-us/" class="hover:text-amber-800">Link to Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-stone-100 pt-6 text-center text-sm text-stone-400">
+      <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+    </div>
   </div>
 </footer>

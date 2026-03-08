@@ -7,6 +7,9 @@ theme = "formation"
   tagline = "Formation Through Play"
   description = "Print-and-play faith formation games for families, youth groups, churches, and Christian educators."
   email_signup_url = ""
+  google_site_verification = "ADD_TOKEN_HERE"
+  author_name = "Philip Arthur Wallach"
+  author_url = "https://philwallach.com"
 
 [taxonomies]
   category = "categories"

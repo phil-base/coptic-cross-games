@@ -12,6 +12,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#1c1917">
+  {{ with .Site.Params.google_site_verification }}
+  {{ if ne . "ADD_TOKEN_HERE" }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+  {{ end }}
   <!-- Open Graph -->
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta property="og:title" content="{{ .Title }}">
@@ -38,5 +41,6 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  {{ partial "analytics.html" . }}
 </body>
 </html>

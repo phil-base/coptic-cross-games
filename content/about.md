@@ -53,3 +53,9 @@ Each game includes everything you need:
 We are building toward a larger formation platform that will include digital game experiences, interactive scenario tools, journaling resources, and formation tracking. The print-and-play games are the foundation.
 
 If you would like to stay informed about new games and future developments, visit our [Starter Pack](/starter-pack/) page.
+
+## About the Author
+
+Coptic Cross Games is created by **Philip Arthur Wallach**, who writes about faith, technology, philosophy, and systems.
+
+See more work at [philwallach.com](https://philwallach.com).
