@@ -17,7 +17,10 @@ async function generatePDF(htmlPath, outputPath, landscape = false) {
     process.exit(1);
   }
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
+  });
   const page = await browser.newPage();
 
   await page.goto(`file://${absoluteHtml}`, { waitUntil: 'networkidle0' });
